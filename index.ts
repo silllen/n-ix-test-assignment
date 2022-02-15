@@ -30,14 +30,14 @@ export const calculateSkuQuantity = async (sku: string): Promise<ActualSkuQuanti
       default:
         throw new UnprocessableTransactionTypeError(acc.type);
     }
-    if(result < 0) {
+    if (result < 0) {
       throw new SkuQuantityLowerThenZeroError();
     }
 
     return result;
   }, searchedStockSku ? searchedStockSku.stock : 0)
 
-  return Promise.resolve({sku, qty: resultQuantity})
+  return {sku, qty: resultQuantity};
 }
 /*
 calculateSkuQuantity('KED089097/68/09')
